@@ -1,0 +1,9 @@
+[submodule "web"]
+	path = web
+	url = git@github.com:42Taskmaster/taskmaster-web.git
+[submodule "taskmasterd"]
+	path = taskmasterd
+	url = git@github.com:42Taskmaster/taskmaster.git
+[submodule "taskmastersh"]
+	path = taskmastersh
+	url = git@github.com:42Taskmaster/taskmastersh.git
