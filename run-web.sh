@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
 cd web
-pnpm run build:simple
-pnpm run preview:simple
+npx pnpm run build:simple
+npx pnpm run preview:simple

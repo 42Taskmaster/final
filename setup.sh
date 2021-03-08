@@ -18,4 +18,4 @@ cd -
 
 # Install dependencies for web ui
 cd web
-pnpm install
+npx pnpm install
