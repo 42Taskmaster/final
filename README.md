@@ -1,7 +1,16 @@
 # final
 A root repository containing all project repositories as git submodules
 
+## Installation
+
+You need to have npx installed globally on your computer. To do that, run the following command:
+
+```sh
+npm install --global npx
+```
+
 ## Setup
+
 To setup everything run `setup.sh` script.
 
 ## How to use?
@@ -20,3 +29,5 @@ To start the shell, simply execute `run-shell.sh`.
 
 To start the Web UI we need to build the code and then launch a HTTP server to serve built files.
 For that execute `run-web.sh` script.
+
+The port on each you can access the Web UI will be written in your terminal.
