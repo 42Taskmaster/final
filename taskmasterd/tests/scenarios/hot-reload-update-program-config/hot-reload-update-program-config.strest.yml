@@ -1,0 +1,109 @@
+requests:
+  start-dev-zero-process:
+    request:
+      url: http://localhost:8080/start
+      method: POST
+      postData:
+        mimeType: application/json
+        text:
+          program_id: dev-zero
+    validate:
+      - jsonpath: status
+        expect: 200
+  running-status:
+    request:
+      url: http://localhost:8080/status
+      method: GET
+    delay: 1000
+    maxRetries: 2
+    validate:
+      - jsonpath: content.result.programs.length
+        expect: 1
+      - jsonpath: content.result.programs[0].id
+        expect: dev-zero
+      - jsonpath: content.result.programs[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes.length
+        expect: 1
+      - jsonpath: content.result.programs[0].processes[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[0].pid
+        regex: ^[1-9]
+  hot-reload-increment-numprocs:
+    request:
+      url: http://localhost:8080/configuration
+      method: PUT
+      postData:
+        mimeType: application/json
+        text:
+          data: >-
+            programs:
+              dev-zero:
+                cmd: "sleep 120"
+                numprocs: 3
+                autostart: true
+                starttime: 1
+  dev-zero-has-3-procs:
+    request:
+      url: http://localhost:8080/status
+      method: GET
+    delay: 2000
+    maxRetries: 2
+    validate:
+      - jsonpath: content.result.programs.length
+        expect: 1
+      - jsonpath: content.result.programs[0].id
+        expect: dev-zero
+      - jsonpath: content.result.programs[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes.length
+        expect: 3
+      - jsonpath: content.result.programs[0].processes[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[0].pid
+        regex: ^[1-9]
+      - jsonpath: content.result.programs[0].processes[1].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[1].pid
+        regex: ^[1-9]
+      - jsonpath: content.result.programs[0].processes[2].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[2].pid
+        regex: ^[1-9]
+  hot-reload-decrement-numprocs:
+    request:
+      url: http://localhost:8080/configuration
+      method: PUT
+      postData:
+        mimeType: application/json
+        text:
+          data: >-
+            programs:
+              dev-zero:
+                cmd: "sleep 120"
+                numprocs: 2
+                autostart: true
+                starttime: 1
+  dev-zero-has-2-procs:
+    request:
+      url: http://localhost:8080/status
+      method: GET
+    delay: 2000
+    maxRetries: 2
+    validate:
+      - jsonpath: content.result.programs.length
+        expect: 1
+      - jsonpath: content.result.programs[0].id
+        expect: dev-zero
+      - jsonpath: content.result.programs[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes.length
+        expect: 2
+      - jsonpath: content.result.programs[0].processes[0].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[0].pid
+        regex: ^[1-9]
+      - jsonpath: content.result.programs[0].processes[1].state
+        expect: RUNNING
+      - jsonpath: content.result.programs[0].processes[1].pid
+        regex: ^[1-9]

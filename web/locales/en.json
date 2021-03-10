@@ -1,0 +1,13 @@
+{
+  "button": {
+    "back": "Back",
+    "close": "Close",
+    "save": "Save",
+    "edit": "Edit",
+    "cancel": "Cancel"
+  },
+
+  "home": "Home",
+  "error_occured": "An error occured",
+  "program_unknown": "We couldn't find this program."
+}
