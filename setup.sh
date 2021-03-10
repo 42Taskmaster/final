@@ -7,6 +7,7 @@ git submodule update
 # Build taskmasterd binary
 cd taskmasterd
 make
+make tests
 
 cd -
 
