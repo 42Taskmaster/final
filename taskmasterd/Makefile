@@ -1,4 +1,4 @@
-GO_FLAGS = -race
+GO_FLAGS =
 
 D_SRCS = $(wildcard cmd/taskmasterd/*.go)
 SH_SRCS = $(wildcard cmd/taskmastersh/*.go)
