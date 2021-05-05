@@ -19,4 +19,4 @@ cd -
 
 # Install dependencies for web ui
 cd web
-npx pnpm install
+npm ci --legacy-peer-deps

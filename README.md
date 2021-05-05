@@ -1,14 +1,6 @@
 # final
 A root repository containing all project repositories as git submodules
 
-## Installation
-
-You need to have npx installed globally on your computer. To do that, run the following command:
-
-```sh
-npm install --global npx
-```
-
 ## Setup
 
 To setup everything run `setup.sh` script.
